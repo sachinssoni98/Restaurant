@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ResturantsNearMe</string>
+    <string name="radius_selector">Radius Selector</string>
+    <string name="_5000m">5KM</string>
+    <string name="_100m">100M</string>
+    <string name="no_restaurant_msg">There is no restaurant available in this radius!</string>
+    <string name="failure_msg">Could not fetched data. Please retry!</string>
+</resources>
