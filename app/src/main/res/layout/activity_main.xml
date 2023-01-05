@@ -76,6 +76,16 @@
         android:text="@string/_5000m" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_restaurant_msg"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/purple_700"
+        android:textSize="30sp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"

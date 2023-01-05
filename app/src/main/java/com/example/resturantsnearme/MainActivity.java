@@ -4,6 +4,7 @@ package com.example.resturantsnearme;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private SeekBar seekBar;
     private int seekBarValue;
-    private TextView distIndicator;
+    private TextView distIndicator, msg;
     private DataManipulation dataManipulation;
 
     @Override
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         seekBar = findViewById(R.id.seekBar);
         distIndicator = findViewById(R.id.dist_indicator);
+        msg= findViewById(R.id.msg);
         display();
         onChangeRadius();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -77,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     public void display() {
         //Creating retrofit
         String url = "https://api.yelp.com/v3/businesses/";
-        String location = "NYC";
+        String location = "USA";
         String key = "Bearer XPFgzKwZGK1yqRxHi0d5xsARFOLpXIvccQj5jekqTnysweGyoIfVUHcH2tPfGq5Oc9kwKHPkcOjk2d1Xobn7aTjOFeop8x41IUfVvg2Y27KiINjYPADcE7Qza0RkX3Yx";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(url)
@@ -99,6 +101,13 @@ public class MainActivity extends AppCompatActivity {
                     //sending data to DataManipulation class for manipulation as per the radius selected.
                     dataManipulation = new DataManipulation(seekBarValue, (ArrayList<Business>) result);
                     adapter = new DataAdapter(dataManipulation.fetchData());
+                    if(dataManipulation.fetchData().size()!=0){
+                        msg.setVisibility(View.GONE);
+                        Log.d("Under if", "Hi");
+                    }
+                    else{
+                        msg.setVisibility(View.VISIBLE);
+                    }
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }
